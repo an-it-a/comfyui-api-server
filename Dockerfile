@@ -36,9 +36,13 @@ RUN wget "https://civitai.com/api/download/models/311162?type=Model&format=SafeT
 WORKDIR /app/http-server
 COPY call_comfyui_unsecure.py /app/http-server
 COPY main.py /app/http-server
-CMD exec functions-framework --target=main_handle
+#CMD exec functions-framework --target=main_handle
 
-WORKDIR /app/ComfyUI
-ENTRYPOINT ["python", "main.py"]
+#WORKDIR /app/ComfyUI
+#ENTRYPOINT ["python", "main.py"]
 
 #ENTRYPOINT ["python", "main.py", "--listen"]
+
+WORKDIR /app
+COPY entrypoint.sh /app
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]

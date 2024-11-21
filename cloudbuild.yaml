@@ -55,11 +55,11 @@ options:
   substitutionOption: ALLOW_LOOSE
   logging: CLOUD_LOGGING_ONLY
 substitutions:
+  _PLATFORM: managed
+  _TRIGGER_ID: 45d72084-56eb-46f3-b549-ea9243e15fcf
+  _SERVICE_NAME: comfyui-api-server
   _DEPLOY_REGION: us-central1
   _AR_HOSTNAME: us-central1-docker.pkg.dev
-  _TRIGGER_ID: 6025c5d3-5ecc-4139-851c-7b52d95247bf
-  _PLATFORM: managed
-  _SERVICE_NAME: comfyui-api-server
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
