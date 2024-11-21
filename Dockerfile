@@ -27,4 +27,4 @@ WORKDIR /app/ComfyUI/models/vae
 RUN wget "https://civitai.com/api/download/models/311162?type=Model&format=SafeTensor" --content-disposition
 
 WORKDIR /app/ComfyUI
-CMD exec python main.py
+ENTRYPOINT ["python", "main.py", "--listen"]
