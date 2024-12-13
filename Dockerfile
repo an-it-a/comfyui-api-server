@@ -27,11 +27,14 @@ RUN pip install -r requirements.txt
 
 WORKDIR /app/ComfyUI
 
-WORKDIR /app/ComfyUI/models/checkpoints
-RUN wget "https://civitai.com/api/download/models/113479?type=Model&format=SafeTensor&size=pruned&fp=fp16" --content-disposition
+#WORKDIR /app/ComfyUI/models/checkpoints
+#RUN wget "https://civitai.com/api/download/models/113479?type=Model&format=SafeTensor&size=pruned&fp=fp16" --content-disposition
+#
+#WORKDIR /app/ComfyUI/models/vae
+#RUN wget "https://civitai.com/api/download/models/311162?type=Model&format=SafeTensor" --content-disposition
 
-WORKDIR /app/ComfyUI/models/vae
-RUN wget "https://civitai.com/api/download/models/311162?type=Model&format=SafeTensor" --content-disposition
+RUN ln -s /vol1/models/checkpoints /app/ComfyUI/models/checkpoints
+RUN ln -s /vol1/models/vae /app/ComfyUI/models/vae
 
 WORKDIR /app/http-server
 COPY call_comfyui_unsecure.py /app/http-server
