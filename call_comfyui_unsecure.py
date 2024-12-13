@@ -25,8 +25,9 @@ class CallComfyUI:
         with urllib.request.urlopen("http://{}/history/{}".format(self.server_address, prompt_id)) as response:
             return json.loads(response.read())
 
-    def get_images(self, ws, prompt):
+    def get_images(self, prompt):
         prompt_id = self.queue_prompt(prompt)['prompt_id']
+        ws = create_connection("ws://{}/ws?clientId={}".format(self.server_address, self.client_id))
         output_images = {}
         while True:
             out = ws.recv()
@@ -52,10 +53,9 @@ class CallComfyUI:
                     images_output.append(image_data)
             output_images[node_id] = images_output
 
+        ws.close()
         return output_images
 
     def call(self, prompt):
-        ws = create_connection("ws://{}/ws?clientId={}".format(self.server_address, self.client_id))
-        images = self.get_images(ws, prompt)
-        ws.close()
+        images = self.get_images(prompt)
         return images
