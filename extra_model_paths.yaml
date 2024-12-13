@@ -1,0 +1,3 @@
+other_ui:
+  checkpoints: /vol1/models/checkpoints
+  vae: /vol1/models/vae/
